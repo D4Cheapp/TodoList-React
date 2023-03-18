@@ -43,13 +43,18 @@ module.exports={
             {
                 //Компиляция из sass в css
                 test: /\.sass$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader', {
-                    loader: 'sass-loader',
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+            },
+            {
+                //Обработка картинок, иконок, svg
+                test: /\.(jpg|png|svg|ico|webp)$/,
+                use: [{
+                    loader: 'file-loader',
                     options: {
-                        //Файл с переменными и миксинами
-                        additionalData: '@import "src/style.sass"',
-                    }},]
-            }
+                        name: '[path]/[name].[ext]'
+                    }
+                }]
+            },
         ]
     },
     plugins: [new HtmlWebpackPlugin({
