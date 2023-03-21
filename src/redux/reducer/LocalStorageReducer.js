@@ -11,8 +11,10 @@ function localStorageReducer(state = initialState(), action){
 
     switch (action.type){
         case 'ADD':
-            newStorage = JSON.stringify(state.concat(action.task))
-            localStorage.setItem('todolist', newStorage)
+            newStorage = JSON.parse(localStorage.getItem('todolist'))
+            newStorage.push(action.task)
+
+            localStorage.setItem('todolist', JSON.stringify(newStorage))
             return newStorage
 
         case 'DELETE':
