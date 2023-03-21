@@ -20,6 +20,19 @@ function localStorageReducer(state = initialState(), action){
             localStorage.setItem('todolist', JSON.stringify(newStorage))
             return newStorage
 
+        case 'EDIT':
+            newStorage = newStorage.map(task => {
+                if (task.id === action.id){
+                    return {
+                        ...task,
+                        title: action.title
+                    }
+                }
+                return task
+            })
+            localStorage.setItem('todolist', JSON.stringify(newStorage))
+            return newStorage
+
         case 'CHECK':
             newStorage = newStorage.map(task => {
                 if (task.id === action.id){
