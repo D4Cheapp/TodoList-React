@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useSelector} from 'react-redux';
 
 function TasksContainer() {
     const tasksArray = useSelector(state => state)
@@ -21,11 +21,11 @@ function TaskCreating({title, checked, id}) {
                 <div className='checkbox__custom'/>
             </label>
 
-            <p className="task__title">
+            <p className='task__title'>
                 {title}
             </p>
 
-            <button className="task__remove-button"/>
+            <button className='task__remove-button'/>
         </div>
     )
 }

@@ -1,5 +1,7 @@
 function initialState(){
-    !!localStorage.getItem('todolist') ?? localStorage.setItem('todolist','[]')
+    if (!localStorage.getItem('todolist')) {
+        localStorage.setItem('todolist','[]')
+    }
 
     return  JSON.parse(localStorage.getItem('todolist'))
 }
