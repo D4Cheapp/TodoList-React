@@ -1,20 +1,21 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
 
-function Footer() {
+function FooterButtons() {
     return (
         <footer>
             <div className="first-buttons-row">
-                <button className="first-buttons-row__button">
+                <NavLink to='/' className="first-buttons-row__button">
                     All
-                </button>
+                </NavLink>
 
-                <button className="first-buttons-row__button">
+                <NavLink to='/active' className="first-buttons-row__button">
                     Active
-                </button>
+                </NavLink>
 
-                <button className="first-buttons-row__button">
+                <NavLink to='/completed' className="first-buttons-row__button">
                     Completed
-                </button>
+                </NavLink>
             </div>
 
             <div className="second-buttons-row">
@@ -34,4 +35,4 @@ function Footer() {
     );
 }
 
-export default Footer;
+export default FooterButtons;
