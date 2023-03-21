@@ -5,6 +5,8 @@ import App from "./App";
 
 import 'normalize.css/normalize.css';
 import './style.sass'
+import {Provider} from "react-redux";
+import store from "./redux/store/store";
 
 const router = createHashRouter([
     {
@@ -13,12 +15,10 @@ const router = createHashRouter([
     },
     {
         path: '/active',
-        loader: () => {console.log('active'); return null},
         element: <App/>
     },
     {
         path: '/completed',
-        loader: () => {console.log('completed'); return null},
         element: <App/>
     },
     {
@@ -30,6 +30,8 @@ const router = createHashRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
+    <Provider store={store}>
         <RouterProvider router={router}/>
+    </Provider>
 );
 
