@@ -21,9 +21,12 @@ function localStorageReducer(state = initialState(), action){
             return newStorage
 
         case 'CHECK':
-            newStorage.filter(task => {
+            newStorage = newStorage.map(task => {
                 if (task.id === action.id){
-                    task.checked = !task.checked
+                    return {
+                        ...task,
+                        checked: !task.checked
+                    }
                 }
                 return task
             })

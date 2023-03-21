@@ -1,7 +1,14 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 function FooterButtons() {
+    const todoList = useSelector(state => state)
+
+    const taskCounter = todoList.reduce((counter, task) => {
+        return (!task.checked) ? counter + 1 : counter
+    }, 0)
+
     return (
         <footer>
             <div className="first-buttons-row">
@@ -20,7 +27,7 @@ function FooterButtons() {
 
             <div className="second-buttons-row">
                 <p className="second-buttons-row__left-tasks">
-                    {'task left'}
+                    {'task left ' + taskCounter}
                 </p>
 
                 <button className="second-buttons-row__button">
