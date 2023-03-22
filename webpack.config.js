@@ -43,7 +43,12 @@ module.exports={
             {
                 //Компиляция из sass в css
                 test: /\.sass$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+                use: ['style-loader', 'css-loader', 'postcss-loader', {
+                    loader: 'sass-loader',
+                    options: {
+                        additionalData: '@import src/sass/_variablesAndGlobal'
+                    }
+                }]
             },
             {
                 //Обработка картинок, иконок, svg

@@ -27,7 +27,7 @@ function TaskCreating({title, checked, id}) {
         titleRef.current?.removeAttribute('readonly')
     }
 
-    function focusOut() {
+    function editFocusOut() {
         const taskValue = titleRef.current?.value.replace(/\s+/gm,' ').trim()
 
         if (taskValue) {
@@ -47,13 +47,13 @@ function TaskCreating({title, checked, id}) {
     function editEnterCheck(event) {
         if (document.activeElement === titleRef.current){
             if (event.key === 'Enter'){
-                focusOut()
+                editFocusOut()
             }
         }
     }
 
     return (
-        <div className='task' id={id} onDoubleClick={taskEditing} onBlur={focusOut}>
+        <div className='task' id={id} onDoubleClick={taskEditing} onBlur={editFocusOut}>
             <label className='checkbox' ref={checkboxRef}>
                 <input className='checkbox__input' type='checkbox' checked={checked} onChange={checkTask}/>
 
