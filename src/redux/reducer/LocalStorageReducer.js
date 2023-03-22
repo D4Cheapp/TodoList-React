@@ -30,16 +30,37 @@ function localStorageReducer(state = initialState(), action){
             })
             break
 
-        case 'CLEAR_COMPLETED':
-            newStorage = newStorage.filter(task => !task.checked)
-            break
-
         case 'CHECK':
             newStorage = newStorage.map(task => {
                 if (task.id === action.id){
                     return {
                         ...task,
                         checked: !task.checked
+                    }
+                }
+                return task
+            })
+            break
+
+        case 'CLEAR_COMPLETED':
+            newStorage = newStorage.filter(task => !task.checked)
+            break
+
+        case 'TOGGLE_ALL_STATE':
+            let isAllCompleted = true
+
+            for (let task of newStorage) {
+                if (!task.checked) {
+                    isAllCompleted = false
+                    break
+                }
+            }
+
+            newStorage = newStorage.map(task => {
+                if (task.checked === isAllCompleted){
+                    return {
+                        ...task,
+                        checked: !isAllCompleted
                     }
                 }
                 return task

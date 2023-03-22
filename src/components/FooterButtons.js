@@ -16,7 +16,7 @@ function FooterButtons() {
     }
 
     function toggleState() {
-
+        dispatch({type: 'TOGGLE_ALL_STATE'})
     }
 
     return (
