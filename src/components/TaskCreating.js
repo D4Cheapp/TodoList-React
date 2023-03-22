@@ -17,6 +17,9 @@ function TaskCreating({title, checked, id}) {
     }
 
     function taskEditing() {
+        window.getSelection().removeAllRanges()
+        titleRef.current.selectionStart = titleRef.current.value.length
+
         checkboxRef.current.style.display = 'none'
         deleteButtonRef.current.style.display = 'none'
 
@@ -41,6 +44,14 @@ function TaskCreating({title, checked, id}) {
         }
     }
 
+    function editEnterCheck(event) {
+        if (document.activeElement === titleRef.current){
+            if (event.key === 'Enter'){
+                focusOut()
+            }
+        }
+    }
+
     return (
         <div className='task' id={id} onDoubleClick={taskEditing} onBlur={focusOut}>
             <label className='checkbox' ref={checkboxRef}>
@@ -49,7 +60,8 @@ function TaskCreating({title, checked, id}) {
                 <div className='checkbox__custom'/>
             </label>
 
-            <textarea className='task__title' ref={titleRef} defaultValue={title} readOnly/>
+            <textarea className='task__title' ref={titleRef}
+                      onKeyDown={editEnterCheck} defaultValue={title} readOnly/>
 
             <button className='task__remove-button' onClick={deleteTask} ref={deleteButtonRef}/>
         </div>
