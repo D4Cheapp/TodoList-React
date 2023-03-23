@@ -1,10 +1,94 @@
 footer
-  width: 100%
+  width: calc(100% - 3vh)
+  margin-top: 20px
+
   padding-inline: 1.5vh
 
   display: inline-flex
   flex-direction: column
+  gap: 20px
+
 
 div.first-buttons-row, div.second-buttons-row
   width: 100%
+
   display: inline-flex
+  align-items: center
+  justify-content: space-between
+
+
+div.first-buttons-row
+  a.first-buttons-row__button
+    width: 20%
+    border-radius: 10px
+
+    font-size: 18px
+    color: $strikemaster
+    font-weight: 700
+
+    padding-block: .15em
+    border: 3px $strikemaster solid
+
+    text-align: center
+    text-decoration: none
+
+    transition: .2s
+
+    &:hover
+      scale: 1.05
+
+    &:active
+      scale: .95
+
+  a.first-buttons-row__button.active
+    border: 3px $cosmic solid
+    color: $cosmic
+
+
+div.second-buttons-row
+  text-align: center
+
+  button.second-buttons-row__button, p.second-buttons-row__left-tasks
+    width: 20%
+    font-size: 18px
+
+    font-weight: 700
+    color: $strikemaster
+
+  p.second-buttons-row__left-tasks
+    margin: 0
+
+  button.second-buttons-row__button
+    cursor: pointer
+
+    background: transparent
+    border: none
+
+    transition: .2s
+
+    &:hover
+      scale: 1.05
+      color: $cosmic
+
+    &:active
+      scale: .95
+
+
+@media screen and (max-width: 1024px)
+  div.first-buttons-row
+    a.first-buttons-row__button
+      width: 30%
+
+  div.second-buttons-row
+    button.second-buttons-row__button, p.second-buttons-row__left-tasks
+      width: 30%
+
+
+@media screen and (max-width: 550px)
+  div.first-buttons-row
+    a.first-buttons-row__button
+      font-size: 12px
+
+  div.second-buttons-row
+    button.second-buttons-row__button, p.second-buttons-row__left-tasks
+      font-size: 12px
