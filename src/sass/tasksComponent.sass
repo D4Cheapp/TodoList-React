@@ -1,6 +1,147 @@
+div.tasks-container
+  width: 100%
+  padding-inline: 1.5vh
+
+  display: inline-flex
+  flex-direction: column
+  gap: 10px
+
+  overflow-x: hidden
+  overflow-y: scroll
+  max-height: 35vh
+  @media (max-width: 1024px)
+    max-height: 45vh
+
+
 div.task
   width: 100%
+  border: 2px transparent solid
 
   display: inline-flex
   justify-content: space-between
   align-items: center
+
+  background: $strikemaster
+  border-radius: 0.8vw
+
+  box-sizing: border-box
+  padding-inline: 3%
+  padding-block: 1.5%
+
+  transition: .2s
+
+  textarea.task__title
+    width: 87%
+
+    background: $strikemaster
+    color: $bon-jour
+    font-size: 25px
+
+    outline: none
+    border: none
+
+    overflow: hidden
+    resize: none
+    user-select: none
+    cursor: default
+
+    padding: 0
+    line-height: 1em
+    word-break: break-word
+
+  button.task__remove-button
+    width: 1.5em
+    height: 1.5em
+
+    opacity: 0
+    cursor: pointer
+
+    border: none
+    background: transparent
+    box-sizing: border-box
+
+    transition: opacity .2s
+
+  &:hover
+    button.task__remove-button
+      opacity: 1
+
+
+label.checkbox
+  position: relative
+
+  input.checkbox__input
+    display: none
+
+  input.checkbox__input:checked + div.checkbox__custom:after
+    opacity: 1
+
+  div.checkbox__custom
+    width: 1.5em
+    height: 1.5em
+    cursor: pointer
+
+    box-sizing: border-box
+    border-radius: .3em
+    border: 3px $cosmic solid
+
+    display: flex
+    justify-content: center
+
+    &:after
+      position: absolute
+      top: 15%
+      content: ''
+      opacity: 0
+
+      height: .6em
+      width: .25em
+
+      border-bottom: $cosmic 3px solid
+      border-right: $cosmic 3px solid
+      rotate: 45deg
+
+      transition: opacity .2s
+
+
+div.task.completed
+  textarea.task__title
+      opacity: .5
+      text-decoration: line-through
+
+
+div.task.editing
+  justify-content: center
+  border: 2px $cosmic solid
+
+
+@media screen and (max-width: 1024px)
+  div.task
+    textarea.task__title
+      width: 80%
+      font-size: 20px
+
+
+@media screen and (max-width: 550px)
+  div.task
+    border-radius: 1vh
+    padding-inline: 5%
+    padding-block: 2.5%
+
+    textarea.task__title
+      width: 70%
+      font-size: 17px
+
+    div.checkbox__custom
+      border-width: 2px
+      width: 1.2em
+      height: 1.2em
+
+      &:after
+        border-width: 2px
+        height: .5em
+        width: .2em
+
+    button.task__remove-button
+      width: 1.2em
+      height: 1.2em
