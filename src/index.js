@@ -13,18 +13,20 @@ const router = createHashRouter([
     {
         path:'/',
         element: <App/>,
-    },
-    {
-        path: '/active',
-        element: <App/>
-    },
-    {
-        path: '/completed',
-        element: <App/>
-    },
-    {
-        path: '/*',
-        loader: () => {return redirect('/')},
+        children: [
+            {
+                path: '/active',
+                element: null
+            },
+            {
+                path: '/completed',
+                element: null
+            },
+            {
+                path: '/*',
+                loader: () => {return redirect('/')},
+            }
+        ]
     }
 ])
 
