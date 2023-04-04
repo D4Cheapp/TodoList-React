@@ -1,8 +1,9 @@
 import React from 'react';
 
-import Header from "./components/Header";
-import TasksContainer from "./components/TasksContainer";
-import FooterButtons from "./components/FooterButtons";
+import {Header} from "./components/Header";
+import {TasksContainer} from "./components/TaskContainer";
+import {FooterButtons} from "./components/FooterButton";
+
 
 function App() {
     return (

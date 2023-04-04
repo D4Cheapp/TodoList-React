@@ -1,0 +1,1 @@
+export {deafault as TaskTemplate} from './TaskTemplate'

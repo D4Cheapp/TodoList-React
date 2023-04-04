@@ -1,5 +1,6 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
+import './Header.sass'
 
 function Header() {
     const dispatch = useDispatch()

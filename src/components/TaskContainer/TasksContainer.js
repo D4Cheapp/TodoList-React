@@ -1,7 +1,8 @@
 import {useSelector} from 'react-redux';
 import React, {useEffect, useState} from 'react';
-import TaskCreating from "./TaskCreating";
+import TaskTemplate from "./TaskTemplate/TaskTemplate";
 import {useNavigate} from "react-router-dom";
+import './TasksContainer.sass'
 
 function TasksContainer() {
     const tasksArray = useSelector(state => state)
@@ -20,8 +21,8 @@ function TasksContainer() {
             {tasksArray.map(task => {
                 if ((filter === 'active' && !task.checked) ||
                         (filter === 'completed' && task.checked || !filter)){
-                  return  <TaskCreating key={task.id}
-                                title={task.title} checked={task.checked} id={task.id}/>
+                  return  <TaskTemplate key={task.id}
+                                        title={task.title} checked={task.checked} id={task.id}/>
                 }
             })}
         </div>

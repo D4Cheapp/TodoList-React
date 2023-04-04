@@ -1,8 +1,10 @@
 import {useDispatch} from "react-redux";
 import React, {useEffect, useRef, useState} from "react";
-import Cross from '../images/cross-mark.svg';
+import Cross from '../../../images/cross-mark.svg';
+import '../TasksContainer.sass'
+import './TaskTemplate.sass'
 
-function TaskCreating({title, checked, id}) {
+function TaskTemplate({title, checked, id}) {
     const dispatch = useDispatch()
 
     const [isChecked, setIsChecked] = useState(false)
@@ -91,4 +93,4 @@ function TaskCreating({title, checked, id}) {
     )
 }
 
-export default TaskCreating
+export default TaskTemplate
