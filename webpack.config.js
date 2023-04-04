@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const path = require('path');
 
-module.exports={
+module.exports = {
     //Режим проекта и точка входа
     mode: 'development',
     entry: {
@@ -46,7 +46,7 @@ module.exports={
                 use: ['style-loader', 'css-loader', 'postcss-loader', {
                     loader: 'sass-loader',
                     options: {
-                        additionalData: '@import src/sass/_variablesAndGlobal'
+                        additionalData: '@import src/style'
                     }
                 }]
             },
