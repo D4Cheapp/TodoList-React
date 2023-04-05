@@ -13,6 +13,7 @@ specifiers:
   autoprefixer: ^10.4.13
   babel-loader: ^9.1.2
   clean-webpack-plugin: ^4.0.0
+  clsx: ^1.2.1
   css-loader: ^6.7.3
   file-loader: ^6.2.0
   gh-pages: ^5.0.0
@@ -52,6 +53,7 @@ devDependencies:
   autoprefixer: 10.4.14_postcss@8.4.21
   babel-loader: 9.1.2_h5x7dh6zbbyopr7jvxivhylqpa
   clean-webpack-plugin: 4.0.0_webpack@5.76.2
+  clsx: 1.2.1
   css-loader: 6.7.3_webpack@5.76.2
   file-loader: 6.2.0_webpack@5.76.2
   gh-pages: 5.0.0
@@ -2260,6 +2262,11 @@ packages:
     resolution: {integrity: sha512-yjLXh88P599UOyPTFX0POsd7WxnbsVsGohcwzHOLspIhhpalPw1BcqED8NblyZLKcGrL8dTgMlcaZxV2jAD41Q==}
     dependencies:
       mimic-response: 1.0.1
+    dev: true
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
     dev: true
 
   /color-convert/1.9.3:

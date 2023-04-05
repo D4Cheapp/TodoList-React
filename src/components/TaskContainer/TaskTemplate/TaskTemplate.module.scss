@@ -1,0 +1,152 @@
+div.task{
+  width: 100%;
+  border: 2px transparent solid;
+
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: $strikeMaster;
+  border-radius: 0.8vw;
+
+  box-sizing: border-box;
+  padding-inline: 3%;
+  padding-block: 1.5%;
+
+  transition: .2s;
+
+  textarea.title{
+    width: 87%;
+
+    background: $strikeMaster;
+    color: $bon-jour;
+    font-size: 25px;
+
+    outline: none;
+    border: none;
+
+    overflow: hidden;
+    resize: none;
+    user-select: none;
+    cursor: default;
+
+    padding: 0;
+    line-height: 1em;
+    word-break: break-word;
+  }
+
+  button.removeButton{
+    width: 1.5em;
+    height: 1.5em;
+
+    opacity: 0;
+    cursor: pointer;
+
+    border: none;
+    background: transparent;
+    box-sizing: border-box;
+
+    transition: opacity .2s;
+  }
+
+  &:hover{
+    button.removeButton{
+      opacity: 1;
+    }
+  }
+}
+
+
+label.checkbox{
+  position: relative;
+
+  input.checkboxInput{
+    display: none;
+  }
+
+  input.checkboxInput:checked + div.customCheckbox:after{
+    opacity: 1;
+  }
+
+  div.customCheckbox{
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+
+    box-sizing: border-box;
+    border-radius: .3em;
+    border: 3px $cosmic solid;
+
+    display: flex;
+    justify-content: center;
+
+    &:after{
+      position: absolute;
+      top: 15%;
+      content: '';
+      opacity: 0;
+
+      height: .6em;
+      width: .25em;
+
+      border-bottom: $cosmic 3px solid;
+      border-right: $cosmic 3px solid;
+      rotate: 45deg;
+
+      transition: opacity .2s;
+    }
+  }
+}
+
+
+:global(div.completed){
+  textarea.title{
+    opacity: .5;
+    text-decoration: line-through;
+  }
+}
+
+
+div.task.editing{
+  justify-content: center;
+  border: 2px $cosmic solid;
+}
+
+
+@media screen and (max-width: 1024px){
+  div.task > textarea.title{
+    width: 75%;
+    font-size: 20px;
+  }
+}
+
+
+@media screen and (max-width: 650px){
+  div.task{
+    border-radius: 1vh;
+    padding-inline: 5%;
+    padding-block: 2.5%;
+
+    textarea.title{
+      width: 70%;
+      font-size: 17px;
+    }
+
+    div.customCheckbox{
+      border-width: 2px;
+      width: 1.2em;
+      height: 1.2em;
+
+      &:after{
+        border-width: 2px;
+        height: .5em;
+        width: .2em;
+      }
+    }
+
+    button.removeButton{
+      width: 1.2em;
+      height: 1.2em;
+    }
+  }
+}

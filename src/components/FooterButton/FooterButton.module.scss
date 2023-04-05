@@ -1,0 +1,114 @@
+footer.footer{
+  width: calc(100% - 3vh);
+  margin-top: 20px;
+
+  padding-inline: 1.5vh;
+
+  display: inline-flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+div.firstRow, div.secondRow{
+  width: 100%;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+div.firstRow{
+  a.firstRowButton{
+    width: 20%;
+    border-radius: 10px;
+
+    font-size: 18px;
+    color: $strikeMaster;
+    font-weight: 700;
+
+    padding-block: .15em;
+    border: 3px $strikeMaster solid;
+
+    text-align: center;
+    text-decoration: none;
+
+    transition: .2s;
+
+    &:hover{
+      scale: 1.05;
+    }
+
+    &:active{
+      scale: .95;
+    }
+  }
+
+  a.firstRowButton.active{
+    border: 3px $cosmic solid;
+    color: $cosmic;
+  }
+}
+
+
+div.secondRow{
+  text-align: center;
+
+  button.secondRowButton, p.leftTasks{
+    width: 20%;
+    font-size: 18px;
+
+    font-weight: 700;
+    color: $strikeMaster;
+  }
+
+  p.leftTasks{
+    margin: 0;
+  }
+
+  button.secondRowButton{
+    cursor: pointer;
+
+    background: transparent;
+    border: none;
+
+    transition: .2s;
+
+    &:hover{
+      scale: 1.05;
+      color: $cosmic;
+    }
+
+    &:active{
+      scale: .95;
+    }
+  }
+}
+
+
+@media screen and (max-width: 1024px){
+  div.firstRow > a.firstRowButton{
+    width: 30%;
+  }
+
+  div.secondRow{
+    button.secondRowButton, p.leftTasks{
+      width: 30%;
+    }
+  }
+}
+
+
+@media screen and (max-width: 550px){
+  div.firstRow > a.firstRowButton{
+    font-size: 12px;
+  }
+
+  div.secondRow{
+    button.secondRowButton, p.leftTasks{
+      font-size: 12px;
+    }
+  }
+}
+
