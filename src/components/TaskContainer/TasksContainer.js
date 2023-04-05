@@ -2,27 +2,27 @@ import {useSelector} from 'react-redux';
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {TaskTemplate} from "./TaskTemplate";
-import './TasksContainer.scss'
+import style from './TasksContainer.module.scss';
 
 function TasksContainer() {
-    const tasksArray = useSelector(state => state)
+    const tasksArray = useSelector(state => state);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const [filter, setFilter] = useState(window.location.href.split('/').at(-1))
+    const [filter, setFilter] = useState(window.location.href.split('/').at(-1));
 
     useEffect(() => {
-        const hrefFilter = window.location.href.split('/').at(-1)
-        setFilter(hrefFilter)
-    },[navigate])
+        const hrefFilter = window.location.href.split('/').at(-1);
+        setFilter(hrefFilter);
+    },[navigate]);
 
     return (
-        <div className='tasks-container'>
+        <div className={style.container}>
             {tasksArray.map(task => {
                 if ((filter === 'active' && !task.checked) ||
                         (filter === 'completed' && task.checked || !filter)){
                   return  <TaskTemplate key={task.id}
-                                        title={task.title} checked={task.checked} id={task.id}/>
+                                        title={task.title} checked={task.checked} id={task.id}/> ;
                 }
             })}
         </div>

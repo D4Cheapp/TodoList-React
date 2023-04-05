@@ -1,4 +1,4 @@
-footer{
+footer.footer{
   width: calc(100% - 3vh);
   margin-top: 20px;
 
@@ -10,7 +10,7 @@ footer{
 }
 
 
-div.first-buttons-row, div.second-buttons-row{
+div.firstRow, div.secondRow{
   width: 100%;
 
   display: inline-flex;
@@ -19,17 +19,17 @@ div.first-buttons-row, div.second-buttons-row{
 }
 
 
-div.first-buttons-row{
-  a.first-buttons-row__button{
+div.firstRow{
+  a.firstRowButton{
     width: 20%;
     border-radius: 10px;
 
     font-size: 18px;
-    color: $strikemaster;
+    color: $strikeMaster;
     font-weight: 700;
 
     padding-block: .15em;
-    border: 3px $strikemaster solid;
+    border: 3px $strikeMaster solid;
 
     text-align: center;
     text-decoration: none;
@@ -45,29 +45,29 @@ div.first-buttons-row{
     }
   }
 
-  a.first-buttons-row__button.active{
+  a.firstRowButton.active{
     border: 3px $cosmic solid;
     color: $cosmic;
   }
 }
 
 
-div.second-buttons-row{
+div.secondRow{
   text-align: center;
 
-  button.second-buttons-row__button, p.second-buttons-row__left-tasks{
+  button.secondRowButton, p.leftTasks{
     width: 20%;
     font-size: 18px;
 
     font-weight: 700;
-    color: $strikemaster;
+    color: $strikeMaster;
   }
 
-  p.second-buttons-row__left-tasks{
+  p.leftTasks{
     margin: 0;
   }
 
-  button.second-buttons-row__button{
+  button.secondRowButton{
     cursor: pointer;
 
     background: transparent;
@@ -88,12 +88,12 @@ div.second-buttons-row{
 
 
 @media screen and (max-width: 1024px){
-  div.first-buttons-row > a.first-buttons-row__button{
+  div.firstRow > a.firstRowButton{
     width: 30%;
   }
 
-  div.second-buttons-row{
-    button.second-buttons-row__button, p.second-buttons-row__left-tasks{
+  div.secondRow{
+    button.secondRowButton, p.leftTasks{
       width: 30%;
     }
   }
@@ -101,12 +101,12 @@ div.second-buttons-row{
 
 
 @media screen and (max-width: 550px){
-  div.first-buttons-row > a.first-buttons-row__button{
+  div.firstRow > a.firstRowButton{
     font-size: 12px;
   }
 
-  div.second-buttons-row{
-    button.second-buttons-row__button, p.second-buttons-row__left-tasks{
+  div.secondRow{
+    button.secondRowButton, p.leftTasks{
       font-size: 12px;
     }
   }

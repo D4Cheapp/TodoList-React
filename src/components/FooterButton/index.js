@@ -1,1 +1,1 @@
-export {default as FooterButtons} from './FooterButtons'
+export {default as FooterButtons} from './FooterButtons';

@@ -1,23 +1,23 @@
 function initialState(){
     if (!localStorage.getItem('todolist')) {
-        localStorage.setItem('todolist','[]')
+        localStorage.setItem('todolist','[]');
     }
 
-    return  JSON.parse(localStorage.getItem('todolist'))
+    return  JSON.parse(localStorage.getItem('todolist'));
 }
 
 function localStorageReducer(state = initialState(), action){
-    let newStorage = Array.from(state)
+    let newStorage = Array.from(state);
 
     switch (action.type){
         case 'ADD':
-            newStorage.push(action.task)
-            break
+            newStorage.push(action.task);
+            break;
 
 
         case 'DELETE':
-            newStorage = newStorage.filter(task => task.id !== action.id)
-            break
+            newStorage = newStorage.filter(task => task.id !== action.id);
+            break;
 
 
         case 'EDIT':
@@ -26,11 +26,11 @@ function localStorageReducer(state = initialState(), action){
                     return {
                         ...task,
                         title: action.title
-                    }
+                    };
                 }
-                return task
-            })
-            break
+                return task;
+            });
+            break;
 
 
         case 'CHECK':
@@ -41,23 +41,23 @@ function localStorageReducer(state = initialState(), action){
                         checked: !task.checked
                     }
                 }
-                return task
-            })
-            break
+                return task;
+            });
+            break;
 
 
         case 'CLEAR_COMPLETED':
-            newStorage = newStorage.filter(task => !task.checked)
-            break
+            newStorage = newStorage.filter(task => !task.checked);
+            break;
 
 
         case 'TOGGLE_ALL_STATE':
-            let isAllCompleted = true
+            let isAllCompleted = true;
 
             for (let task of newStorage) {
                 if (!task.checked) {
-                    isAllCompleted = false
-                    break
+                    isAllCompleted = false;
+                    break;
                 }
             }
 
@@ -66,19 +66,20 @@ function localStorageReducer(state = initialState(), action){
                     return {
                         ...task,
                         checked: !isAllCompleted
-                    }
+                    };
                 }
-                return task
-            })
-            break
+                return task;
+            });
+
+            break;
 
 
         default:
-            return state
+            return state;
     }
 
-    localStorage.setItem('todolist', JSON.stringify(newStorage))
-    return newStorage
+    localStorage.setItem('todolist', JSON.stringify(newStorage));
+    return newStorage;
 }
 
-export default localStorageReducer
+export default localStorageReducer;
