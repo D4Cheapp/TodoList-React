@@ -1,8 +1,8 @@
 import {useSelector} from 'react-redux';
 import React, {useEffect, useState} from 'react';
-import TaskTemplate from "./TaskTemplate/TaskTemplate";
 import {useNavigate} from "react-router-dom";
-import './TasksContainer.sass'
+import {TaskTemplate} from "./TaskTemplate";
+import './TasksContainer.scss'
 
 function TasksContainer() {
     const tasksArray = useSelector(state => state)

@@ -1,1 +1,1 @@
-export {deafault as TaskTemplate} from './TaskTemplate'
+export {default as TaskTemplate} from './TaskTemplate'

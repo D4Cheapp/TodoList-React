@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import './FooterButton.sass'
+import './FooterButton.scss'
 
 function FooterButtons() {
     const todoList = useSelector(state => state)

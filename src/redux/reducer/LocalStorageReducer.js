@@ -14,9 +14,11 @@ function localStorageReducer(state = initialState(), action){
             newStorage.push(action.task)
             break
 
+
         case 'DELETE':
             newStorage = newStorage.filter(task => task.id !== action.id)
             break
+
 
         case 'EDIT':
             newStorage = newStorage.map(task => {
@@ -30,6 +32,7 @@ function localStorageReducer(state = initialState(), action){
             })
             break
 
+
         case 'CHECK':
             newStorage = newStorage.map(task => {
                 if (task.id === action.id){
@@ -42,9 +45,11 @@ function localStorageReducer(state = initialState(), action){
             })
             break
 
+
         case 'CLEAR_COMPLETED':
             newStorage = newStorage.filter(task => !task.checked)
             break
+
 
         case 'TOGGLE_ALL_STATE':
             let isAllCompleted = true
@@ -66,6 +71,10 @@ function localStorageReducer(state = initialState(), action){
                 return task
             })
             break
+
+
+        default:
+            return state
     }
 
     localStorage.setItem('todolist', JSON.stringify(newStorage))

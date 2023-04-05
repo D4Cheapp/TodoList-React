@@ -42,11 +42,11 @@ module.exports = {
             },
             {
                 //Компиляция из sass в css
-                test: /\.sass$/,
+                test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'postcss-loader', {
                     loader: 'sass-loader',
                     options: {
-                        additionalData: '@import src/style'
+                        additionalData: '@import "src/style.scss";'
                     }
                 }]
             },
