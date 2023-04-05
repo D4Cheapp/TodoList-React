@@ -1,17 +1,15 @@
 import {useDispatch} from "react-redux";
-import React, {useEffect, useRef} from "react";
-import Cross from '../../../images/cross-mark.svg';
 import clsx from "clsx";
+import React, {useEffect, useRef, useState} from "react";
+import Cross from '../../../images/cross-mark.svg';
 import style from './TaskTemplate.module.scss';
 
 function TaskTemplate({title, checked, id}) {
     const dispatch = useDispatch();
 
-    const taskRef = useRef();
+    const [isEditing, setEditing] = useState(false);
+
     const titleRef = useRef();
-    const checkboxRef = useRef();
-    const deleteButtonRef = useRef();
-    const inputRef = useRef();
 
     function deleteTask() {
         dispatch({type: 'DELETE', id: id});
@@ -25,12 +23,9 @@ function TaskTemplate({title, checked, id}) {
         window.getSelection().removeAllRanges();
         titleRef.current.selectionStart = titleRef.current?.value.length;
 
-        taskRef.current?.classList.add(style.editing);
-        checkboxRef.current.style.visibility = 'hidden';
-        deleteButtonRef.current.style.visibility = 'hidden';
+        setEditing(true);
 
         titleRef.current?.focus();
-        titleRef.current?.removeAttribute('readonly');
     }
 
     function resizeTaskTitle() {
@@ -44,14 +39,11 @@ function TaskTemplate({title, checked, id}) {
         const taskValue = titleRef.current?.value.replace(/\s+/gm,' ').trim();
 
         if (taskValue) {
-            taskRef.current?.classList.remove(style.editing);
-            checkboxRef.current?.removeAttribute('style');
-            deleteButtonRef.current.style.visibility = 'unset';
+            setEditing(false);
 
             titleRef.current.value = taskValue;
 
             dispatch({type: 'EDIT', id: id, title: taskValue});
-            titleRef.current?.setAttribute('readonly', 'true');
 
             resizeTaskTitle();
         }
@@ -73,11 +65,11 @@ function TaskTemplate({title, checked, id}) {
     }, []);
 
     return (
-        <div className={clsx(style.task, {'completed': checked})}
-             id={id} onDoubleClick={taskEditing} onBlur={editFocusOut} ref={taskRef}>
+        <div className={clsx(style.task, {[style.completed]: checked, [style.editing]: isEditing})}
+             id={id} onDoubleClick={taskEditing} onBlur={editFocusOut}>
 
-            <label className={style.checkbox} ref={checkboxRef}>
-                <input className={style.checkboxInput} type='checkbox' ref={inputRef}
+            <label className={clsx(style.checkbox, {[style.hidden] : isEditing})}>
+                <input className={style.checkboxInput} type='checkbox'
                        checked={checked} onChange={checkTask}/>
 
                 <div className={style.customCheckbox}/>
@@ -87,10 +79,10 @@ function TaskTemplate({title, checked, id}) {
                       onKeyDown={(event) => {
                           editEnterCheck(event);
                           resizeTaskTitle();
-                      }} defaultValue={title} readOnly/>
+                      }} defaultValue={title} readOnly={!isEditing}/>
 
-            <button className={style.removeButton} style={{backgroundImage: `url(${Cross})`}}
-                    onClick={deleteTask} ref={deleteButtonRef}/>
+            <button className={clsx(style.removeButton,{[style.hidden]: isEditing})}
+                    style={{backgroundImage: `url(${Cross})`}} onClick={deleteTask}/>
         </div>
     )
 }

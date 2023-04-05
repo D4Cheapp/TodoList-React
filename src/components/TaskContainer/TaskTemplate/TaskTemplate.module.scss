@@ -49,6 +49,10 @@ div.task{
     transition: opacity .2s;
   }
 
+  button.removeButton.hidden{
+    visibility: hidden;
+  }
+
   &:hover{
     button.removeButton{
       opacity: 1;
@@ -98,8 +102,11 @@ label.checkbox{
   }
 }
 
+label.checkbox.hidden{
+  visibility: hidden;
+}
 
-:global(div.completed){
+div.completed{
   textarea.title{
     opacity: .5;
     text-decoration: line-through;
