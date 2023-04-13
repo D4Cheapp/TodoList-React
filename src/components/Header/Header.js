@@ -1,6 +1,7 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
 import style from './Header.module.scss';
+import {addTask} from "../../redux/actions";
 
 function Header() {
     const dispatch = useDispatch();
@@ -9,11 +10,13 @@ function Header() {
         if (event.key === 'Enter' && !!event.currentTarget.value.trim()){
             const title = event.currentTarget.value.replace(/\s+/gm,' ').trim();
 
-            dispatch({type: 'ADD', task: {
-                    title: title,
-                    checked: false,
-                    id: Date.now()
-            }});
+            const task = {
+                title: title,
+                checked: false,
+                id: Date.now()
+            };
+
+            dispatch(addTask(task));
 
             event.currentTarget.value = '';
         }

@@ -3,6 +3,7 @@ import clsx from "clsx";
 import React, {useEffect, useRef, useState} from "react";
 import Cross from '../../../images/cross-mark.svg';
 import style from './TaskTemplate.module.scss';
+import {checkTaskAction, deleteTaskAction, taskEditAction} from "../../../redux/actions";
 
 function TaskTemplate({title, checked, id}) {
     const dispatch = useDispatch();
@@ -12,11 +13,11 @@ function TaskTemplate({title, checked, id}) {
     const titleRef = useRef();
 
     function deleteTask() {
-        dispatch({type: 'DELETE', id: id});
+        dispatch(deleteTaskAction(id));
     }
 
     function checkTask() {
-        dispatch({type: 'CHECK', id: id});
+        dispatch(checkTaskAction(id));
     }
 
     function taskEditing() {
@@ -43,7 +44,7 @@ function TaskTemplate({title, checked, id}) {
 
             titleRef.current.value = taskValue;
 
-            dispatch({type: 'EDIT', id: id, title: taskValue});
+            dispatch(taskEditAction(id, taskValue));
 
             resizeTaskTitle();
         }
