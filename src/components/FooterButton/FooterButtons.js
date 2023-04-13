@@ -2,6 +2,7 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import style from './FooterButton.module.scss';
+import {clearCompletedAction, toggleStateAction} from "../../redux/actions";
 
 function FooterButtons() {
     const todoList = useSelector(state => state);
@@ -13,11 +14,11 @@ function FooterButtons() {
     }, 0);
 
     function clearCompleted() {
-        dispatch({type: 'CLEAR_COMPLETED'});
+        dispatch(clearCompletedAction());
     }
 
     function toggleState() {
-        dispatch({type: 'TOGGLE_ALL_STATE'});
+        dispatch(toggleStateAction());
     }
 
     return (

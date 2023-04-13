@@ -72,10 +72,6 @@ function localStorageReducer(state = initialState(), action){
             });
 
             break;
-
-
-        default:
-            return state;
     }
 
     localStorage.setItem('todolist', JSON.stringify(newStorage));
