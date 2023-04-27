@@ -4,13 +4,14 @@ import {useNavigate} from "react-router-dom";
 import {TaskTemplate} from "./TaskTemplate";
 import style from './TasksContainer.module.scss';
 
+//Контейнер задач
 function TasksContainer() {
     const tasksArray = useSelector(state => state);
-
     const navigate = useNavigate();
 
     const [filter, setFilter] = useState(window.location.href.split('/').at(-1));
 
+    //Обновление фильтра при загрузке страницы
     useEffect(() => {
         const hrefFilter = window.location.href.split('/').at(-1);
         setFilter(hrefFilter);
@@ -19,6 +20,7 @@ function TasksContainer() {
     return (
         <div className={style.container}>
             {tasksArray.map(task => {
+                //Фильтрация задач
                 if ((filter === 'active' && !task.checked) ||
                         (filter === 'completed' && task.checked || !filter)){
                   return  <TaskTemplate key={task.id}

@@ -6,8 +6,12 @@ import {addTask} from "../../redux/actions";
 function Header() {
     const dispatch = useDispatch();
 
+    //Считывание пользовательского ввода
     function inputReader(event) {
+        //Считывание ввода при нажатии enter и не пустом поле ввода
         if (event.key === 'Enter' && !!event.currentTarget.value.trim()){
+
+            //Удаление больших пустых промежутков в словах
             const title = event.currentTarget.value.replace(/\s+/gm,' ').trim();
 
             const task = {
@@ -21,6 +25,7 @@ function Header() {
             event.currentTarget.value = '';
         }
 
+        //Проверка на пустоту ли ввода
         if (!event.currentTarget.value.trim()){
             event.currentTarget.value = '';
         }
@@ -31,6 +36,7 @@ function Header() {
             <h1 className={style.title}>
                 Todo List
             </h1>
+
             <input type="text" className={style.taskInput} onKeyDown={inputReader}
                    placeholder="Whats need to be done?"/>
         </header>
