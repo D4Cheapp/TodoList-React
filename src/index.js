@@ -5,6 +5,7 @@ import App from "./App";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
 
+//Роутинг
 const router = createHashRouter([
     {
         path:'/',
@@ -28,6 +29,7 @@ const router = createHashRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+//Подключение redux store и react router
 root.render(
     <Provider store={store}>
         <RouterProvider router={router}/>

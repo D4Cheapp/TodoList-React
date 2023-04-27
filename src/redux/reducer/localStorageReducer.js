@@ -1,3 +1,4 @@
+//Стартовое значение для store
 function initialState(){
     if (!localStorage.getItem('todolist')) {
         localStorage.setItem('todolist','[]');
@@ -6,21 +7,25 @@ function initialState(){
     return  JSON.parse(localStorage.getItem('todolist'));
 }
 
+//Редьюсер локального хранилища
 function localStorageReducer(state = initialState(), action){
     let newStorage = Array.from(state);
 
     switch (action.type){
-        case 'ADD':
+        //Добавление задачи
+        case 'ADD':{
             newStorage.push(action.task);
             break;
+        }
 
-
-        case 'DELETE':
+        //Удаление задачи
+        case 'DELETE':{
             newStorage = newStorage.filter(task => task.id !== action.id);
             break;
+        }
 
-
-        case 'EDIT':
+        //Изменение задачи
+        case 'EDIT':{
             newStorage = newStorage.map(task => {
                 if (task.id === action.id){
                     return {
@@ -31,9 +36,10 @@ function localStorageReducer(state = initialState(), action){
                 return task;
             });
             break;
+        }
 
-
-        case 'CHECK':
+        //Выполнение / отмена выполнения задачи
+        case 'CHECK':{
             newStorage = newStorage.map(task => {
                 if (task.id === action.id){
                     return {
@@ -44,16 +50,19 @@ function localStorageReducer(state = initialState(), action){
                 return task;
             });
             break;
+        }
 
-
-        case 'CLEAR_COMPLETED':
+        //Очистка выполненных задач
+        case 'CLEAR_COMPLETED':{
             newStorage = newStorage.filter(task => !task.checked);
             break;
+        }
 
-
-        case 'TOGGLE_ALL_STATE':
+        //Переключение состояний на противоположные
+        case 'TOGGLE_ALL_STATE':{
             let isAllCompleted = true;
 
+            //Проверка на выполненность всех задач
             for (let task of newStorage) {
                 if (!task.checked) {
                     isAllCompleted = false;
@@ -72,6 +81,12 @@ function localStorageReducer(state = initialState(), action){
             });
 
             break;
+        }
+
+        //Действие по умолчанию
+        default:{
+            return newStorage;
+        }
     }
 
     localStorage.setItem('todolist', JSON.stringify(newStorage));
