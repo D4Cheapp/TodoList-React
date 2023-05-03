@@ -45,7 +45,8 @@ div.firstRow{
     }
   }
 
-  a.firstRowButton.active{
+  a.active{
+    scale: 1.05;
     border: 3px $cosmic solid;
     color: $cosmic;
   }
