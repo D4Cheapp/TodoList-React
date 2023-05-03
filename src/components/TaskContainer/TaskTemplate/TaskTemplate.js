@@ -39,8 +39,6 @@ function TaskTemplate({title, checked, id}) {
         titleRef.current.style.height = titleRef.current?.scrollHeight+'px';
     }
 
-    window.addEventListener('resize', resizeTaskTitle);
-
     //Завершение редактирования задачи
     function editFocusOut() {
         const taskValue = titleRef.current?.value.replace(/\s+/gm,' ').trim();
@@ -71,6 +69,9 @@ function TaskTemplate({title, checked, id}) {
     //Подгонка размеров задач при загрузке страницы
     useEffect(() => {
         resizeTaskTitle();
+
+        window.addEventListener('resize', resizeTaskTitle);
+        return () => window.removeEventListener('resize', resizeTaskTitle);
     }, []);
 
     return (
