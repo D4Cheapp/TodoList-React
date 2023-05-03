@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import style from './FooterButton.module.scss';
 import {clearCompletedAction, toggleStateAction} from "../../redux/actions";
+import clsx from "clsx";
 
 //Компонент кнопок под формой
 function FooterButtons() {
@@ -29,15 +30,15 @@ function FooterButtons() {
 
             {/*Переключение фильтрации задач*/}
             <div className={style.firstRow}>
-                <NavLink to='/' className={style.firstRowButton}>
+                <NavLink to='/' className={({isActive}) => clsx(style.firstRowButton, {[style.active] : isActive})}>
                     All
                 </NavLink>
 
-                <NavLink to='/active' className={style.firstRowButton}>
+                <NavLink to='/active' className={({isActive}) => clsx(style.firstRowButton, {[style.active] : isActive})}>
                     Active
                 </NavLink>
 
-                <NavLink to='/completed' className={style.firstRowButton}>
+                <NavLink to='/completed' className={({isActive}) => clsx(style.firstRowButton, {[style.active] : isActive})}>
                     Completed
                 </NavLink>
             </div>
