@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
 import style from './Header.module.scss';
-import {addTask} from "../../redux/actions";
+import {addTask} from "../../redux/reducer/localStorageReducer";
 
 function Header() {
     const dispatch = useDispatch();

@@ -2,8 +2,8 @@ import React from 'react';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import style from './FooterButton.module.scss';
-import {clearCompletedAction, toggleStateAction} from "../../redux/actions";
 import clsx from "clsx";
+import {clearCompletedAction, toggleStateAction} from "../../redux/reducer/localStorageReducer";
 
 //Компонент кнопок под формой
 function FooterButtons() {

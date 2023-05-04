@@ -22,9 +22,9 @@ function TasksContainer() {
             {tasksArray.map(task => {
                 //Фильтрация задач
                 if ((filter === 'active' && !task.checked) ||
-                        (filter === 'completed' && task.checked || !filter)){
-                  return  <TaskTemplate key={task.id}
-                                        title={task.title} checked={task.checked} id={task.id}/> ;
+                        (filter === 'completed' && task.checked) || !filter) {
+                  return  <TaskTemplate key={task.id} title={task.title}
+                                            checked={task.checked} id={task.id}/> ;
                 }
             })}
         </div>

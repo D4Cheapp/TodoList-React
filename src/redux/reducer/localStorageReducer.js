@@ -1,4 +1,7 @@
 //Стартовое значение для store
+import {createSlice} from "@reduxjs/toolkit";
+
+//Начальное состояние хранилища
 function initialState(){
     if (!localStorage.getItem('todolist')) {
         localStorage.setItem('todolist','[]');
@@ -7,41 +10,61 @@ function initialState(){
     return  JSON.parse(localStorage.getItem('todolist'));
 }
 
-//Редьюсер локального хранилища
-function localStorageReducer(state = initialState(), action){
-    let newStorage = Array.from(state);
+//Функция сохранения состояния в локальное хранилище
+function saveStateToLocalStorage(newStorage) {
+    localStorage.setItem('todolist', JSON.stringify(newStorage));
+}
 
-    switch (action.type){
+//Редьюсер локального хранилища
+const localStorageSlice = createSlice({
+    name: 'localStorage',
+    initialState,
+    reducers: {
         //Добавление задачи
-        case 'ADD':{
-            newStorage.push(action.task);
-            break;
-        }
+        addTask(state, task) {
+            let newStorage = Array.from(state);
+
+            newStorage.push(task.payload);
+
+            saveStateToLocalStorage(newStorage);
+            return newStorage;
+        },
 
         //Удаление задачи
-        case 'DELETE':{
-            newStorage = newStorage.filter(task => task.id !== action.id);
-            break;
-        }
+        deleteTaskAction(state, taskId) {
+            let newStorage = Array.from(state);
+
+            newStorage = newStorage.filter(task => task.id !== taskId.payload);
+
+            saveStateToLocalStorage(newStorage);
+            return newStorage;
+        },
 
         //Изменение задачи
-        case 'EDIT':{
+        taskEditAction(state, action) {
+            let newStorage = Array.from(state);
+            const {id, taskValue}  = action.payload;
+
             newStorage = newStorage.map(task => {
-                if (task.id === action.id){
+                if (task.id === id){
                     return {
                         ...task,
-                        title: action.title
+                        title: taskValue
                     };
                 }
                 return task;
             });
-            break;
-        }
+
+            saveStateToLocalStorage(newStorage);
+            return newStorage;
+        },
 
         //Выполнение / отмена выполнения задачи
-        case 'CHECK':{
+        checkTaskAction(state, taskId) {
+            let newStorage = Array.from(state);
+
             newStorage = newStorage.map(task => {
-                if (task.id === action.id){
+                if (task.id === taskId.payload){
                     return {
                         ...task,
                         checked: !task.checked
@@ -49,26 +72,27 @@ function localStorageReducer(state = initialState(), action){
                 }
                 return task;
             });
-            break;
-        }
+
+            saveStateToLocalStorage(newStorage);
+            return newStorage;
+        },
 
         //Очистка выполненных задач
-        case 'CLEAR_COMPLETED':{
+        clearCompletedAction(state) {
+            let newStorage = Array.from(state);
+
             newStorage = newStorage.filter(task => !task.checked);
-            break;
-        }
+
+            saveStateToLocalStorage(newStorage);
+            return newStorage;
+        },
 
         //Переключение состояний на противоположные
-        case 'TOGGLE_ALL_STATE':{
-            let isAllCompleted = true;
+        toggleStateAction(state) {
+            let newStorage = Array.from(state);
 
             //Проверка на выполненность всех задач
-            for (let task of newStorage) {
-                if (!task.checked) {
-                    isAllCompleted = false;
-                    break;
-                }
-            }
+            let isAllCompleted = newStorage.every(task => task.checked);
 
             newStorage = newStorage.map(task => {
                 if (task.checked === isAllCompleted){
@@ -80,17 +104,13 @@ function localStorageReducer(state = initialState(), action){
                 return task;
             });
 
-            break;
-        }
-
-        //Действие по умолчанию
-        default:{
+            saveStateToLocalStorage(newStorage);
             return newStorage;
-        }
+        },
     }
+});
 
-    localStorage.setItem('todolist', JSON.stringify(newStorage));
-    return newStorage;
-}
+export const {addTask, checkTaskAction, deleteTaskAction,
+    clearCompletedAction, taskEditAction, toggleStateAction} = localStorageSlice.actions;
 
-export default localStorageReducer;
+export default localStorageSlice.reducer;
