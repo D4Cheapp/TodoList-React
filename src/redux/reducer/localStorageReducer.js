@@ -22,30 +22,23 @@ const localStorageSlice = createSlice({
     reducers: {
         //Добавление задачи
         addTask(state, task) {
-            let newStorage = Array.from(state);
-
-            newStorage.push(task.payload);
-
-            saveStateToLocalStorage(newStorage);
-            return newStorage;
+            state.push(task.payload);
+            saveStateToLocalStorage(state);
+            return state
         },
 
         //Удаление задачи
         deleteTaskAction(state, taskId) {
-            let newStorage = Array.from(state);
-
-            newStorage = newStorage.filter(task => task.id !== taskId.payload);
-
-            saveStateToLocalStorage(newStorage);
-            return newStorage;
+            state = state.filter(task => task.id !== taskId.payload);
+            saveStateToLocalStorage(state);
+            return state
         },
 
         //Изменение задачи
         taskEditAction(state, action) {
-            let newStorage = Array.from(state);
             const {id, taskValue}  = action.payload;
 
-            newStorage = newStorage.map(task => {
+            state = state.map(task => {
                 if (task.id === id){
                     return {
                         ...task,
@@ -55,15 +48,13 @@ const localStorageSlice = createSlice({
                 return task;
             });
 
-            saveStateToLocalStorage(newStorage);
-            return newStorage;
+            saveStateToLocalStorage(state);
+            return state
         },
 
         //Выполнение / отмена выполнения задачи
         checkTaskAction(state, taskId) {
-            let newStorage = Array.from(state);
-
-            newStorage = newStorage.map(task => {
+            state = state.map(task => {
                 if (task.id === taskId.payload){
                     return {
                         ...task,
@@ -73,28 +64,23 @@ const localStorageSlice = createSlice({
                 return task;
             });
 
-            saveStateToLocalStorage(newStorage);
-            return newStorage;
+            saveStateToLocalStorage(state);
+            return state
         },
 
         //Очистка выполненных задач
         clearCompletedAction(state) {
-            let newStorage = Array.from(state);
-
-            newStorage = newStorage.filter(task => !task.checked);
-
-            saveStateToLocalStorage(newStorage);
-            return newStorage;
+            state = state.filter(task => !task.checked);
+            saveStateToLocalStorage(state);
+            return state
         },
 
         //Переключение состояний на противоположные
         toggleStateAction(state) {
-            let newStorage = Array.from(state);
-
             //Проверка на выполненность всех задач
-            let isAllCompleted = newStorage.every(task => task.checked);
+            let isAllCompleted = state.every(task => task.checked);
 
-            newStorage = newStorage.map(task => {
+            state = state.map(task => {
                 if (task.checked === isAllCompleted){
                     return {
                         ...task,
@@ -104,8 +90,8 @@ const localStorageSlice = createSlice({
                 return task;
             });
 
-            saveStateToLocalStorage(newStorage);
-            return newStorage;
+            saveStateToLocalStorage(state);
+            return state
         },
     }
 });
