@@ -43,6 +43,14 @@ div.firstRow{
     &:active{
       scale: .95;
     }
+
+    @media screen and (max-width: 1024px){
+      width: 30%;
+    }
+
+    @media screen and (max-width: 550px){
+        font-size: 12px;
+    }
   }
 
   a.active{
@@ -66,6 +74,14 @@ div.secondRow{
 
   p.leftTasks{
     margin: 0;
+
+    @media screen and (max-width: 1024px){
+      width: 30%;
+    }
+
+    @media screen and (max-width: 550px){
+      font-size: 12px;
+    }
   }
 
   button.secondRowButton{
@@ -86,30 +102,3 @@ div.secondRow{
     }
   }
 }
-
-
-@media screen and (max-width: 1024px){
-  div.firstRow > a.firstRowButton{
-    width: 30%;
-  }
-
-  div.secondRow{
-    button.secondRowButton, p.leftTasks{
-      width: 30%;
-    }
-  }
-}
-
-
-@media screen and (max-width: 550px){
-  div.firstRow > a.firstRowButton{
-    font-size: 12px;
-  }
-
-  div.secondRow{
-    button.secondRowButton, p.leftTasks{
-      font-size: 12px;
-    }
-  }
-}
-
