@@ -70,10 +70,6 @@ div.secondRow{
 
     font-weight: 700;
     color: $strikeMaster;
-  }
-
-  p.leftTasks{
-    margin: 0;
 
     @media screen and (max-width: 1024px){
       width: 30%;
@@ -82,6 +78,10 @@ div.secondRow{
     @media screen and (max-width: 550px){
       font-size: 12px;
     }
+  }
+
+  p.leftTasks{
+    margin: 0;
   }
 
   button.secondRowButton{
