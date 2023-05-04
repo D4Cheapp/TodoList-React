@@ -33,6 +33,10 @@ div.task{
     padding: 0;
     line-height: 1em;
     word-break: break-word;
+
+    @media screen and (max-width: 1400px){
+      width: 80%;
+    }
   }
 
   button.removeButton{
