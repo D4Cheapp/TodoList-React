@@ -3,7 +3,7 @@ import clsx from "clsx";
 import React, {useEffect, useRef, useState} from "react";
 import Cross from '../../../images/cross-mark.svg';
 import style from './TaskTemplate.module.scss';
-import {checkTaskAction, deleteTaskAction, taskEditAction} from "../../../redux/actions";
+import {checkTaskAction, deleteTaskAction, taskEditAction} from "../../../redux/reducer/localStorageReducer";
 
 //Шаблон для задачи
 function TaskTemplate({title, checked, id}) {
@@ -48,7 +48,7 @@ function TaskTemplate({title, checked, id}) {
 
             titleRef.current.value = taskValue;
 
-            dispatch(taskEditAction(id, taskValue));
+            dispatch(taskEditAction({id, taskValue}));
 
             resizeTaskTitle();
         }
