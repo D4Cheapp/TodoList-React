@@ -102,14 +102,21 @@ label.checkbox{
   }
 }
 
+
 label.checkbox.hidden{
   visibility: hidden;
 }
+
 
 div.completed{
   textarea.title{
     opacity: .5;
     text-decoration: line-through;
+
+    @media screen and (max-width: 1024px){
+      width: 75%;
+      font-size: 20px;
+    }
   }
 }
 
@@ -117,14 +124,6 @@ div.completed{
 div.task.editing{
   justify-content: center;
   border: 2px $cosmic solid;
-}
-
-
-@media screen and (max-width: 1024px){
-  div.task > textarea.title{
-    width: 75%;
-    font-size: 20px;
-  }
 }
 
 

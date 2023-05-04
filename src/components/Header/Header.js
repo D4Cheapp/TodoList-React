@@ -15,7 +15,7 @@ function Header() {
             const title = event.currentTarget.value.replace(/\s+/gm,' ').trim();
 
             const task = {
-                title: title,
+                title,
                 checked: false,
                 id: Date.now()
             };
