@@ -6,7 +6,7 @@ import style from './TaskTemplate.module.scss';
 import {checkTaskAction, deleteTaskAction, taskEditAction} from "../../../redux/reducer/localStorageReducer";
 
 //Шаблон для задачи
-function TaskTemplate({title, checked, id}) {
+function TaskTemplate({title, checked, id, innerWidth}) {
     const dispatch = useDispatch();
 
     const [isEditing, setEditing] = useState(false);
@@ -69,10 +69,7 @@ function TaskTemplate({title, checked, id}) {
     //Подгонка размеров задач при загрузке страницы
     useEffect(() => {
         resizeTaskTitle();
-
-        window.addEventListener('resize', resizeTaskTitle);
-        return () => window.removeEventListener('resize', resizeTaskTitle);
-    }, []);
+    }, [innerWidth]);
 
     return (
         <div className={clsx(style.task, {[style.completed]: checked, [style.editing]: isEditing})}
