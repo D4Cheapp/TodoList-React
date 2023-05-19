@@ -1,13 +1,11 @@
 import {useSelector} from 'react-redux';
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
 import {TaskTemplate} from "./TaskTemplate";
 import style from './TasksContainer.module.scss';
 
 //Контейнер задач
 function TasksContainer() {
     const tasksArray = useSelector(state => state);
-    const navigate = useNavigate();
 
     const [filter, setFilter] = useState(window.location.href.split('/').at(-1));
     const [innerWidth, setInnerWidth] = useState(window?.innerWidth || 0);
@@ -16,15 +14,15 @@ function TasksContainer() {
     useEffect(() => {
         const hrefFilter = window.location.href.split('/').at(-1);
         setFilter(hrefFilter);
-    },[navigate]);
+    },[window.location.href]);
 
     useEffect(() => {
-        const widthChange = () => {
+        const onWidthChange = () => {
             setInnerWidth(window.innerWidth);
         };
 
-        window.addEventListener('resize', widthChange);
-        return () => window.removeEventListener('resize', widthChange);
+        window.addEventListener('resize', onWidthChange);
+        return () => window.removeEventListener('resize', onWidthChange);
     });
 
     return (
